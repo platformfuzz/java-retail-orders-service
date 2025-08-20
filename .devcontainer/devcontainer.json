@@ -1,0 +1,41 @@
+{
+  "name": "Java Orders Service Dev",
+  "image": "mcr.microsoft.com/devcontainers/java:21",
+  "features": {
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {},
+    "ghcr.io/devcontainers/features/java:1": {
+      "version": "21",
+      "installGradle": "false",
+      "installMaven": "true"
+    }
+  },
+  "postCreateCommand": "bash .devcontainer/scripts/postCreate.sh",
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "bash",
+        "java.home": "/usr/local/openjdk-21",
+        "java.configuration.updateBuildConfiguration": "automatic"
+      },
+      "extensions": [
+        "vscjava.vscode-java-pack",
+        "redhat.java",
+        "vscjava.vscode-java-debug",
+        "vscjava.vscode-java-test",
+        "vscjava.vscode-maven",
+        "vscjava.vscode-java-dependency"
+      ]
+    }
+  },
+  "mounts": [
+    "source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind"
+  ],
+  "forwardPorts": [8080],
+  "portsAttributes": {
+    "8080": {
+      "label": "Orders Service",
+      "onAutoForward": "notify"
+    }
+  },
+  "remoteUser": "vscode"
+}
